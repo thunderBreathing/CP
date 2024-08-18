@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdio>
+#include <functional>
+#include <map>
 #include <queue>
 using namespace std;
 
@@ -18,18 +21,56 @@ const double EPS = 1e-9;
 
 bool debug = false;
 
-void solve(int n) {
-  int ara[n][n], min_sum = 0;
-  priority_queue<int> pq;
+void find_sum(int ara1[], int ara2[], int result[], int k) {
+  priority_queue<ii, vector<ii>, greater<ii>> min_heap;
 
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < n; j++) {
-      scanf("%d", &ara[i][j]);
-    }
-    sort(ara[i], ara[i] + n);
-    min_sum += ara[i][0];
-    pq.push(ara[i][1] - ara[i][0]);
+  for (int i = 0; i < k; i++) {
+    min_heap.push({ara1[i] + ara2[0], 0});
   }
+
+  int count = 0;
+
+  while (!min_heap.empty()) {
+    ii current = min_heap.top();
+    min_heap.pop();
+
+    result[count++] = current.first;
+
+    if (current.second + 1 < k) {
+      min_heap.push(
+          {current.first - ara2[current.second] + ara2[current.second + 1],
+           current.second + 1});
+    }
+
+    if (count == k) {
+      break;
+    }
+  }
+}
+
+void solve(int k) {
+  int ara1[k], ara2[k];
+
+  for (int i = 0; i < k; i++) {
+    scanf("%d", &ara1[i]);
+  }
+  sort(ara1, ara1 + k);
+
+  for (int i = 1; i < k; i++) {
+    for (int j = 0; j < k; j++) {
+      scanf("%d", &ara2[j]);
+    }
+    sort(ara2, ara2 + k);
+    find_sum(ara1, ara2, ara1, k);
+  }
+
+  printf("%d", ara1[0]);
+
+  for (int i = 1; i < k; i++) {
+    printf(" %d", ara1[i]);
+  }
+
+  printf("\n");
 }
 
 int main() {
@@ -37,7 +78,7 @@ int main() {
   // cin.tie(NULL);
 
   int n;
-  while (scanf("%d", &n)) {
+  while (~scanf("%d", &n)) {
     solve(n);
   }
 
