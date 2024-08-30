@@ -39,7 +39,7 @@ void solve() {
   }
 
   string str;
-  getline(cin, str);
+  getline(cin, str); // Clear the newline after the last scanf
 
   for (int i = 0; i < g; i++) {
     string line;
@@ -62,36 +62,37 @@ void solve() {
         comp = temp;
         continue;
       }
-      if (!done)
+      if (!done) {
         total += party[temp];
+      }
       if (done) {
         double num = stod(temp.c_str());
         if (comp == ">") {
-          if (total > num) {
+          if (total > num + EPS) {
             result = "correct";
           } else {
             result = "incorrect";
           }
         } else if (comp == "<") {
-          if (total < num) {
+          if (total < num - EPS) {
             result = "correct";
           } else {
             result = "incorrect";
           }
         } else if (comp == ">=") {
-          if (total >= num) {
+          if (total >= num - EPS) {
             result = "correct";
           } else {
             result = "incorrect";
           }
         } else if (comp == "<=") {
-          if (total <= num) {
+          if (total <= num + EPS) {
             result = "correct";
           } else {
             result = "incorrect";
           }
         } else if (comp == "=") {
-          if (total == num) {
+          if (fabs(total - num) < EPS) {
             result = "correct";
           } else {
             result = "incorrect";
@@ -99,7 +100,7 @@ void solve() {
         }
       }
     }
-    cout << "Guess #" << i + 1 << " was " << result << el;
+    cout << "Guess #" << i + 1 << " was " << result << "." << el;
   }
 }
 
