@@ -1,6 +1,4 @@
 #include <bits/stdc++.h>
-#include <cstdio>
-#include <iostream>
 using namespace std;
 
 typedef long long ll;
@@ -19,36 +17,35 @@ const double EPS = 1e-9;
 
 bool debug = false;
 
-void solve() {
-  int al, ar, bl, br;
-  scanf("%d %d", &al, &ar);
-  scanf("%d %d", &bl, &br);
-  int ans;
-
-  if (ar < bl || br < al)
-    ans = 1;
-  else if (al >= bl && ar <= br)
-    ans = (al != bl) + (ar != br) + ar - al;
-  else if (bl >= al && br <= ar)
-    ans = (al != bl) + (ar != br) + br - bl;
-  else if (bl >= al && br >= ar)
-    ans = ar - bl + (bl != al) + (br != ar);
-  else if (al >= bl && ar >= br)
-    ans = br - al + (al != bl) + (ar != br);
-
-  printf("%d\n", ans);
-}
+void solve() {}
 
 int main() {
   // ios_base::sync_with_stdio(false);
   // cin.tie(NULL);
 
-  int t;
-  scanf("%d", &t);
+  int n;
+  cin >> n;
+  vector<vi> list(n);
 
-  while (t--) {
-    solve();
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j <= i; j++) {
+      int x;
+      cin >> x;
+      list[i].pb(x);
+    }
   }
+
+  int element = list[0][0];
+
+  for (int i = 2; i <= n; i++) {
+    if (element >= i) {
+      element = list[element - 1][i - 1];
+    } else {
+      element = list[i - 1][element - 1];
+    }
+  }
+
+  cout << element << el;
 
   return 0;
 }

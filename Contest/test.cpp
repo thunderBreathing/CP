@@ -23,16 +23,13 @@ int main() {
   // ios_base::sync_with_stdio(false);
   // cin.tie(NULL);
 
-  int l, r;
-  cin >> l >> r;
+  string a, b;
+  a = "abcde";
+  b = "efghi";
 
-  if ((l == 0 && r == 0) || (l == 1 && r == 1)) {
-    cout << "Invalid\n";
-  } else if (l == 1) {
-    cout << "Yes\n";
-  } else {
-    cout << "No\n";
-  }
+  a[0] = b[0];
+
+  cout << a << el;
 
   return 0;
 }

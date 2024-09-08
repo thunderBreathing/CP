@@ -1,5 +1,6 @@
+#include <algorithm>
 #include <bits/stdc++.h>
-#include <cstdio>
+#include <string>
 using namespace std;
 
 typedef long long ll;
@@ -18,44 +19,31 @@ const double EPS = 1e-9;
 
 bool debug = false;
 
-void solve() {
-  int n, k;
-  scanf("%d %d", &n, &k);
-
-  int a[n];
-  for (int i = 0; i < n; i++) {
-    scanf("%d", &a[i]);
-  }
-  sort(a, a + n);
-
-  ll ans = 0;
-  for (int i = n - 1; i >= 0; i -= 2) {
-    if (i != 0) {
-      ans += a[i] - a[i - 1];
-      if (a[i] - a[i - 1] <= k) {
-        k -= a[i] - a[i - 1];
-        ans -= a[i] - a[i - 1];
-      } else {
-        ans -= k;
-        k = 0;
-      }
-    } else {
-      ans += a[i];
-    }
-  }
-
-  printf("%lld\n", ans);
-}
+void solve() {}
 
 int main() {
   // ios_base::sync_with_stdio(false);
   // cin.tie(NULL);
 
-  int t;
-  scanf("%d", &t);
+  string s, t;
+  cin >> s;
+  cin >> t;
 
-  while (t--) {
-    solve();
+  vector<string> x;
+
+  for (int i = 0; i < s.length(); i++) {
+    if (s[i] != t[i]) {
+      s[i] = t[i];
+      x.pb(s);
+    }
+  }
+
+  sort(x.begin(), x.end());
+
+  cout << x.size() << el;
+
+  for (int i = 0; i < x.size(); i++) {
+    cout << x[i] << el;
   }
 
   return 0;
