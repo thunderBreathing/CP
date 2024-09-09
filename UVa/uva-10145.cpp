@@ -1,5 +1,11 @@
 #include <bits/stdc++.h>
+#include <iostream>
+#include <ostream>
+#include <string>
+#include <sys/types.h>
 #include <unordered_map>
+#include <unordered_set>
+
 using namespace std;
 
 typedef long long ll;
@@ -19,43 +25,71 @@ const double EPS = 1e-9;
 bool debug = false;
 
 void solve() {
-  unordered_map<int, pair<int, char>> item;
-  unordered_map<int, bool> denied;
-  int trid, itid;
+  unordered_map<int, unordered_set<int>> item;
+  unordered_map<int, unordered_set<int>> exclusive;
+  unordered_set<int> denied;
+  int trid, item_id;
   char mode;
 
+  string gr = "GRANTED";
+  string dn = "DENIED";
+  string ig = "IGNORED";
+
   string line;
+  getline(cin, line);
   while (getline(cin, line)) {
     if (line[0] == '#') {
       return;
     }
 
     istringstream ss(line);
-    ss >> mode >> trid >> itid;
+    ss >> mode >> trid >> item_id;
 
-    if (denied[trid]) {
-      cout << "IGNORED" << el;
+    if (denied.find(trid) != denied.end()) {
+      cout << ig << el;
       continue;
     }
 
-    if (item[itid].first != trid && item[itid].second != mode) {
-      cout << "DENIED" << el;
-      denied[trid] = true;
-      continue;
+    bool is_denied = false;
+    if (mode == 'X') {
+      for (int var : item[item_id]) {
+        if (trid != var) {
+          is_denied = true;
+          cout << dn << el;
+          denied.insert(trid);
+          break;
+        }
+      }
+    } else {
+      for (int var : exclusive[item_id]) {
+        if (trid != var) {
+          is_denied = true;
+          cout << dn << el;
+          denied.insert(trid);
+          break;
+        }
+      }
     }
 
-    item[itid] = {trid, mode};
-    cout << "GRANTED" << el;
+    if (!is_denied) {
+      cout << gr << el;
+      if (mode == 'X') {
+        exclusive[item_id].insert(trid);
+        item[item_id].insert(trid);
+      } else {
+        item[item_id].insert(trid);
+      }
+    }
   }
 }
 
 int main() {
-  // ios_base::sync_with_stdio(false);
-  // cin.tie(NULL);
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
 
   int t;
   cin >> t;
-  cin.ignore(); // Ignore newline after the number of test cases
+  cin.ignore();
 
   while (t--) {
     solve();
