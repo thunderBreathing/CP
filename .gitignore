@@ -1,3 +1,10 @@
 Contest/
-UVa/a.out
-Kattis/a.out
+# Ignore binary output files like a.out
+*.out
+
+# Ignore all .txt files (input/output files)
+*.txt
+
+# Ignore backup files
+*.swp
+*.swo
