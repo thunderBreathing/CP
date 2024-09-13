@@ -10,5 +10,7 @@ Contest/
 *.swp
 *.swo
 
-# Ignore binary output files without any extensions
-*.[^./]*
+# Ignore all files that don't have an extension
+# Files that don’t contain a dot
+[!^.]*
+
