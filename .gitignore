@@ -9,3 +9,6 @@ Contest/
 # Ignore backup files
 *.swp
 *.swo
+
+# Ignore binary output files without any extensions
+*.[^./]*
