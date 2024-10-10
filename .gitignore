@@ -1,5 +1,8 @@
 Contest/
 
+# Ignore all input and output files
+*.in 
+
 # Ignore binary output files like a.out
 *.out
 
