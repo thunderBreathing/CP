@@ -1,24 +1,4 @@
-# Contest/
-#
-# # Ignore all input and output files
-# *.in 
-#
-# # Ignore binary output files like a.out
-# *.out
-#
-# # Ignore all .txt files (input/output files)
-# *.txt
-#
-# # Ignore backup files
-# *.swp
-# *.swo
-#
-# # Ignore all files that don't have an extension
-# # Files that don’t contain a dot
-# #[!^.]*
-
 *
-
 !*/ 
 Contest/
 !*.cpp
