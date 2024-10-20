@@ -69,6 +69,7 @@ int main() {
 
   // read input
   fin >> n >> m;
+  cin >> n >> m;
   fin.close();
 
   // precalculate all bisquares
@@ -86,9 +87,11 @@ int main() {
   // write output
   if (ans.empty()) {
     fout << "NONE\n";
+    cout << "NONE\n";
   } else {
     for (auto &[dif, start] : ans) {
       fout << start << " " << dif << el;
+      cout << start << " " << dif << el;
     }
   }
 
