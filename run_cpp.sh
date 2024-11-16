@@ -9,7 +9,7 @@ filename="$1"
 output="${filename%.*}"
 
 # Compile with warnings and optimization
-g++ -std=c++17 -Wall -Wextra -o "$output" "$filename"
+g++ -std=c++23 -Wall -Wextra -o "$output" "$filename"
 
 if [ $? -eq 0 ]; then
   # Measure time and memory usage
